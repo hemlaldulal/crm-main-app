@@ -26,19 +26,19 @@ const Navbar: React.FC = () => {
       >
         <Link
           to="/"
-          className="text-white px-4 py-2 text-[1.5rem] hover:text-red-100"
+          className="text-white px-4 py-2 text-[1.5rem] hover:text-[#e93b3a]"
         >
           Home
         </Link>
         <Link
           to="/products"
-          className="text-white text-[1.5rem] px-4 py-2 hover:text-red-100"
+          className="text-white text-[1.5rem] px-4 py-2 hover:text-[#e93b3a]"
         >
           Products
         </Link>
         <Link
           to="/contact"
-          className="text-white text-[1.5rem] px-4 py-2 hover:text-red-100"
+          className="text-white text-[1.5rem] px-4 py-2 hover:text-[#e93b3a]"
         >
           Contact Us
         </Link>

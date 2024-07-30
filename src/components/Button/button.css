@@ -1,0 +1,89 @@
+.button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  border: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  line-height: 24px;
+  text-align: center;
+  font-size: 16px;
+  text-wrap: wrap;
+  background-color: white;
+
+}
+
+.button--primary--default {
+  color: white;
+  background-color: #0E84ED;
+}
+
+.button--primary--hover:hover {
+  color: white;
+  background-color: #0B6ABE;
+}
+
+.button--primary--hover:hover {
+  color: white;
+  background-color: #0B6ABE;
+}
+
+.button--primary--icon {
+  color: white;
+  background-color: #0E84ED;
+}
+
+.button--primary--disabled {
+  color: #737A81;
+  background-color: #E9E9E9;
+}
+
+.button--primary--disabledIcon {
+  color: #737A81;
+  background-color: #E9E9E9;
+}
+
+.button--secondary--default {
+  color: #0E84ED;
+  border: 1px solid #0E84ED;
+}
+
+.button--secondary--default:hover {
+  color: #0B6ABE;
+  border: 1px solid #0B6ABE;
+
+}
+
+.button--secondary--icon {
+  color: #0E84ED;
+  border: 1px solid #0E84ED;
+}
+.button--secondary--disabled {
+  color: #737A81;
+  border: 1px solid #737A81;
+}
+
+.button--secondary--disabledIcon {
+  color: #737A81;
+  border: 1px solid #737A81;
+}
+
+.button--small {
+  width: 160px;
+  height: 40px;
+  padding: 10px 16px;
+}
+
+.button--medium {
+  width: 160px;
+  height: 48px;
+  padding: 20px 32px;
+}
+
+.button--large {
+  width: 160px;
+  height: 64px;
+  padding: 20px 32px;
+}

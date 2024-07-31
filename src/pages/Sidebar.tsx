@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaChevronDown, FaChevronUp, FaBars } from "react-icons/fa";
+
 import dashboardIcon from "../assets/Dashboard.png";
 import purchaseIcon from "../assets/purchase.png";
 import salesIcon from "../assets/sales.png";
@@ -24,7 +26,7 @@ import reporting from "../assets/Reporting.png";
 import openForm from "../assets/Open form icon.png";
 import vendor from "../assets/vendor.png";
 
-import { FaChevronDown, FaChevronUp, FaBars } from "react-icons/fa";
+import ContactDetails from "./Contact";
 
 const Sidebar: React.FC = () => {
   const [openSection, setOpenSection] = useState<string | null>(null);
@@ -39,517 +41,219 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="flex items-start">
-        <div
-          className={`fixed top-0 left-0 h-screen bg-[#0E84ED] border-r border-gray-300 flex flex-col p-8 gap-7 ${
-            isExpanded ? "w-[276PX]" : "basis-[5%]"
+    <div className="flex h-screen">
+      <div
+        className={`fixed top-0 left-0 h-full bg-[#0E84ED] border-r border-gray-300 flex flex-col p-4 gap-5 transition-all duration-300 ${
+          isExpanded ? "w-[20%]" : "w-[65px]"
+        }`}
+      >
+        <button
+          onClick={toggleSidebar}
+          className="text-white mb-10"
+          aria-label="Toggle Sidebar"
+        >
+          <FaBars />
+        </button>
+        <Link
+          to="/"
+          className={`text-white flex items-center gap-2 ${
+            isExpanded ? "justify-start" : "justify-center"
           }`}
         >
-          <button onClick={toggleSidebar} className="text-white mb-4">
-            <FaBars />
-          </button>
-          <Link to="/" className="text-white flex items-center gap-2">
-            <img src={dashboardIcon} alt="Dashboard" className="w-6 h-6" />
-            {isExpanded && "Dashboard"}
-          </Link>
-          <div>
+          <img src={dashboardIcon} alt="Dashboard" className="w-5 h-5" />
+          {isExpanded && "Dashboard"}
+        </Link>
+        {[
+          {
+            name: "purchase",
+            icon: purchaseIcon,
+            links: [
+              {
+                to: "/purchase/order",
+                img: purchaseOder,
+                text: "Purchase Order",
+              },
+              {
+                to: "/purchase/receive",
+                img: purchaseReceive,
+                text: "Purchase Receive",
+              },
+              {
+                to: "/purchase/return",
+                img: purchaseReturn,
+                text: "Purchase Return",
+              },
+              { to: "/suppliers", img: suppliers, text: "Suppliers" },
+            ],
+          },
+          {
+            name: "sales",
+            icon: salesIcon,
+            links: [
+              { to: "/sales", img: salesIcon, text: "Sales" },
+              { to: "/pos", img: pos, text: "POS" },
+              { to: "/sales/return", img: salesReturn, text: "Sales Return" },
+            ],
+          },
+          {
+            name: "inventory",
+            icon: inventoryIcon,
+            links: [
+              { to: "/pos", img: pos, text: "POS" },
+              { to: "/sales/account", img: category, text: "Sales A/C" },
+              {
+                to: "/journal/voucher",
+                img: suppliers,
+                text: "Journal Voucher",
+              },
+              { to: "/salary/account", img: priceCheck, text: "Salary A/C" },
+              {
+                to: "/employee/details",
+                img: pakageCube,
+                text: "Employee Details",
+              },
+              { to: "/tax", img: pakageCube, text: "Tax" },
+            ],
+          },
+          {
+            name: "crm",
+            icon: crmIcon,
+            links: [
+              { to: "/crm/contact", img: contact, text: "Contacts" },
+              {
+                to: "/crm/sales-person",
+                img: vendor,
+                text: "Sales Person Assign",
+              },
+              {
+                to: "/crm/opportunity",
+                img: opportunity,
+                text: "Opportunity Details",
+              },
+              { to: "/crm/form", img: openForm, text: "Form" },
+              { to: "/crm/reporting", img: reporting, text: "Reporting" },
+            ],
+          },
+          {
+            name: "productConfiguration",
+            icon: productConfigurationIcon,
+            links: [
+              { to: "/product/category", img: contact, text: "Category" },
+              {
+                to: "/product/sub-category",
+                img: vendor,
+                text: "Sub-Category",
+              },
+              { to: "/product/type", img: opportunity, text: "Product Type" },
+              { to: "/product/group", img: openForm, text: "Product Group" },
+              { to: "/product/master", img: openForm, text: "Product Master" },
+            ],
+          },
+          {
+            name: "pendingTask",
+            icon: pendingTaskIcon,
+            links: [
+              { to: "/tasks/contacts", img: contact, text: "Contacts" },
+              {
+                to: "/tasks/sales-person",
+                img: vendor,
+                text: "Sales Person Assign",
+              },
+              {
+                to: "/tasks/opportunity",
+                img: opportunity,
+                text: "Opportunity Details",
+              },
+              {
+                to: "/tasks/customer-group",
+                img: openForm,
+                text: "Customer Group",
+              },
+            ],
+          },
+          {
+            name: "customerRetention",
+            icon: customerRetentionIcon,
+            links: [
+              { to: "/retention/contacts", img: contact, text: "Contacts" },
+              {
+                to: "/retention/sales-person",
+                img: vendor,
+                text: "Sales Person Assign",
+              },
+              {
+                to: "/retention/opportunity",
+                img: opportunity,
+                text: "Opportunity Details",
+              },
+              {
+                to: "/retention/customer-group",
+                img: openForm,
+                text: "Customer Group",
+              },
+            ],
+          },
+          {
+            name: "setting",
+            icon: settingIcon,
+            links: [
+              { to: "/settings/contacts", img: contact, text: "Contacts" },
+              {
+                to: "/settings/sales-person",
+                img: vendor,
+                text: "Sales Person Assign",
+              },
+              {
+                to: "/settings/opportunity",
+                img: opportunity,
+                text: "Opportunity Details",
+              },
+              {
+                to: "/settings/customer-group",
+                img: openForm,
+                text: "Customer Group",
+              },
+            ],
+          },
+        ].map(({ name, icon, links }) => (
+          <div key={name}>
             <div
               className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("purchase")}
+              onClick={() => toggleSection(name)}
             >
-              <img src={purchaseIcon} alt="Purchase" className="w-6 h-6 " />
-              {isExpanded && "Purchase"}
-              {openSection === "purchase" ? (
+              <img src={icon} alt={name} className="w-6 h-6" />
+              {isExpanded && name.charAt(0).toUpperCase() + name.slice(1)}
+              {openSection === name ? (
                 <FaChevronUp className="ml-auto" />
               ) : (
                 <FaChevronDown className="ml-auto" />
               )}
             </div>
-            {openSection === "purchase" && isExpanded && (
+            {openSection === name && isExpanded && (
               <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={purchaseOder}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Purchase Order
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white h-4px  gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={purchaseReceive}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Purchase Receive
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={purchaseReturn}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Purchase Return
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={suppliers}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Suppliers
-                </Link>
+                {links.map(({ to, img, text }) => (
+                  <Link
+                    key={text}
+                    to={to}
+                    className="text-white gap-2 mb-4 flex items-center"
+                  >
+                    <img src={img} alt={text} className="w-6 h-6" />
+                    {text}
+                  </Link>
+                ))}
               </div>
             )}
           </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("sales")}
-            >
-              <img src={salesIcon} alt="Sales" className="w-6 h-6" />
-              {isExpanded && "Sales"}
-              {openSection === "sales" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "sales" && isExpanded && (
-              <div className="ml-8 mt-4 ">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={salesIcon}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Sales
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={pos} alt="Purchase Order" className="w-6 h-6" />
-                  POS
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={salesReturn}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Sales Return
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("inventory")}
-            >
-              <img src={inventoryIcon} alt="Inventory" className="w-6 h-6" />
-              {isExpanded && "Inventory"}
-              {openSection === "inventory" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "inventory" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={pos} alt="Purchase Order" className="w-6 h-6" />
-                  POS
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={category}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Sales A/C
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={suppliers}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Journal Voucher
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={priceCheck}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Salary A/C
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={pakageCube}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Employee Details
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={pakageCube}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Tax
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("crm")}
-            >
-              <img src={crmIcon} alt="CRM" className="w-6 h-6" />
-              {isExpanded && "CRM"}
-              {openSection === "crm" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "crm" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={contact} alt="Purchase Order" className="w-6 h-6" />
-                  Contacts
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={vendor} alt="Purchase Order" className="w-6 h-6" />
-                  Sales Person Assign
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={opportunity}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Opportunity Details
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Form
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={reporting}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Reporting
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("productConfiguration")}
-            >
-              <img
-                src={productConfigurationIcon}
-                alt="Product Configuration"
-                className="w-6 h-6"
-              />
-              {isExpanded && "Product Configuration"}
-              {openSection === "productConfiguration" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "productConfiguration" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={contact} alt="Purchase Order" className="w-6 h-6" />
-                  Category
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={vendor} alt="Purchase Order" className="w-6 h-6" />
-                  Sub-Category
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={opportunity}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Product Type
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Product Group
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Product Master
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("pendingTask")}
-            >
-              <img
-                src={pendingTaskIcon}
-                alt="Pending Task"
-                className="w-6 h-6"
-              />
-              {isExpanded && "Pending Task"}
-              {openSection === "pendingTask" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "pendingTask" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={contact} alt="Purchase Order" className="w-6 h-6" />
-                  Contacts
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={vendor} alt="Purchase Order" className="w-6 h-6" />
-                  Sales Person Assign
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={opportunity}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Opportunity Details
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Customer Group
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("customerRetention")}
-            >
-              <img
-                src={customerRetentionIcon}
-                alt="Customer Retention"
-                className="w-6 h-6"
-              />
-              {isExpanded && "Customer Retention"}
-              {openSection === "customerRetention" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "customerRetention" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={contact} alt="Purchase Order" className="w-6 h-6" />
-                  Contacts
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={vendor} alt="Purchase Order" className="w-6 h-6" />
-                  Sales Person Assign
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={opportunity}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Opportunity Details
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Customer Group
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            <div
-              className="text-white flex items-center gap-2 cursor-pointer"
-              onClick={() => toggleSection("setting")}
-            >
-              <img src={settingIcon} alt="Settings" className="w-6 h-6" />
-              {isExpanded && "Settings"}
-              {openSection === "setting" ? (
-                <FaChevronUp className="ml-auto" />
-              ) : (
-                <FaChevronDown className="ml-auto" />
-              )}
-            </div>
-            {openSection === "setting" && isExpanded && (
-              <div className="ml-8 mt-4">
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={contact} alt="Purchase Order" className="w-6 h-6" />
-                  Contacts
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img src={vendor} alt="Purchase Order" className="w-6 h-6" />
-                  Sales Person Assign
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={opportunity}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Opportunity Details
-                </Link>
-                <Link
-                  to="/purchase/order"
-                  className="text-white gap-2 mb-4 flex  "
-                >
-                  <img
-                    src={openForm}
-                    alt="Purchase Order"
-                    className="w-6 h-6"
-                  />
-                  Customer Group
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="flex-1 basis">{/* Main content here */}</div>
+        ))}
       </div>
-    </>
+      <div
+        className={`flex-1 p-4 transition-all duration-300 ${
+          isExpanded ? "ml-[20%]" : "ml-[80px]"
+        }`}
+      >
+        <ContactDetails />
+      </div>
+    </div>
   );
 };
 

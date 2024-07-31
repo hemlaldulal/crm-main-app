@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaBell, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { AiOutlineUser } from "react-icons/ai";
+// import { AiOutlineUser } from "react-icons/ai";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
